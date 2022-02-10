@@ -8,3 +8,5 @@ Welcome to my collection of IDCS samlples:
 - How to configure MFA within IDCS (MFA_Setup.pdf)
 #Additional blogs on the topics around fusion and IDCS integration is found here.
 [Role based Provisioning from Oracle Fusion Application to IDCS](https://blogs.oracle.com/cloud-infrastructure/post/role-based-provisioning-from-oracle-fusion-application-to-idcs-v2)
+[Managing Users In Identity Cloud Service – Part 1](https://blogs.oracle.com/cloudsecurity/post/managing-users-in-identity-cloud-service-pt1)
+[Managing Users In Identity Cloud Service – Part 2](https://blogs.oracle.com/cloudsecurity/post/managing-users-in-identity-cloud-service-pt2)
