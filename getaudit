@@ -1,0 +1,42 @@
+#!/bin/sh
+if [ $# -lt 1 ];then
+  echo -n "Client ID: "
+  read CID
+else
+  CID=$1
+fi
+if [ $# -lt 2 ];then
+  echo -n "Client Secret: "
+  read CSECRET
+else
+  CSECRET=$2
+fi
+if [ $# -lt 3 ];then
+  echo -n "IDCS URL: including https://: "
+  read IDCSURL
+else 
+  IDCSURL=$3
+fi
+if [ $# -eq 4 ];then
+  FILTER=$4
+else 
+  #FILTER='filter=timestamp%20gt%20%222022-02-21T15:25:00.001Z%22%20and%20timestamp%20lt%20%222022-02-21T17:25:00.001Z%22&count=1000'
+  #FILTER='filter=timestamp%20gt%20%222022-02-21T15:25:00.001Z%22&count=1000'
+  #FILTER='2022-02-21T15:25:00.001Z&attributes=actorName,ssoIdentityProvider,ssoAuthFactor,clientIp,ssoBrowser,ssoPlatform,timestamp,message&sortBy=actorName&sortOrder=ascending&count=1000'
+  FILTER='filter=timestamp%20gt%20%222022-02-21T15:25:00.001Z%22%20and%20timestamp%20lt%20%222022-02-21T16:25:00.001Z%22&attributes=actorName,ssoIdentityProvider,ssoAuthFactor,clientIp,ssoBrowser,ssoPlatform,timestamp,message&sortBy=actorName&sortOrder=ascending&count=1000'
+fi
+API=/admin/v1/AuditEvents
+echo "getting JWT token"
+CURL="curl -s -k -X POST -u \"$CID:$CSECRET\" -d \"grant_type=client_credentials&scope=urn:opc:idm:__myscopes__\" \"$IDCSURL/oauth2/v1/token\" -o access_token.json"
+JWT=`cat access_token.json | cut -d ":" -f 2 | cut -d ',' -f 1 | sed 's/"//g'`
+CURL="curl -s -o audit.json -k -X GET -H \"Content-Type:application/scim+json\" -H \"Authorization: Bearer "$JWT"\" "${IDCSURL}${API}?${FILTER}" "
+#CURL="curl -s -k -X GET -H \"Content-Type:application/scim+json\" -H \"Authorization: Bearer "$JWT"\" "${IDCSURL}${API}" " 
+echo "Fetching audit data with curl"
+echo $CURL 
+echo "press any key"
+read
+#curl -s -k -X GET -H "Content-Type:application/scim+json" -H "Authorization: Bearer $JWT" "${IDCSURL}${API}?${FILTER}"  | jq '.Resources[]'
+eval $CURL 
+cat audit.json | jq '.Resources[]' > a.json
+cat audit.json | jq '.Resources[]' 
+

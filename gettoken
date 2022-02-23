@@ -1,0 +1,29 @@
+#!/bin/sh
+# usage:  clientid shared secret URL of format
+if [ $# -lt 1 ];then
+  echo -n "Client ID: "
+  read CID
+else
+  CID=$1
+fi
+if [ $# -lt 2 ];then
+  echo -n "Client Secret: "
+  read CSECRET
+else
+  CSECRET=$2
+fi
+if [ $# -lt 3 ];then
+  echo -n "IDCS URL: including https://: "
+  read IDCSURL
+else
+  IDCSURL=$3
+fi
+API=/admin/v1/Users
+FILTER='/503720d0765146289fa7a351fa11fe51'
+echo "getting JWT token"
+CURL="curl -k -X POST -u \"$CID:$CSECRET\" -d \"grant_type=client_credentials&scope=urn:opc:idm:__myscopes__\" \"$IDCSURL/oauth2/v1/token\" -o access_token.json"
+echo executing $CURL
+eval $CURL
+JWT=`cat access_token.json | cut -d ":" -f 2 | cut -d ',' -f 1 | sed 's/"//g'`
+echo $JWT
+
