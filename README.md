@@ -20,24 +20,27 @@ Pull all IDCS Audit since 2022-21-02 15:25
     sh getaudit 7550e9d8a28e41a5a5beb26fbfbfbfbfb 35b44b44-c76b-49d2-8b8b-e19c6e98c534 https://\<your IDCS URL\>.identity.oraclecloud.com '?filter=timestamp%20gt%20%222022-02-21T15:25:00.001Z%22%20'
   
 Generate JWT token for API usage (like postman)
-```sh gettoken 7550e9d8a28e41a5a5beb26fbfbfbfbfb 35b44b44-c76b-49d2-8b8b-e19c6e98c534 https://<your IDCS URL>.identity.oraclecloud.com
+```
+sh gettoken 7550e9d8a28e41a5a5beb26fbfbfbfbfb 35b44b44-c76b-49d2-8b8b-e19c6e98c534 https://<your IDCS URL>.identity.oraclecloud.com
 ```  
 Use OCI CLI to fetch Audit records
+``` 
 oci audit event list --compartment-id ocid1.tenancy.oc1..aaaaaaaaflf2uasr2shm5ag2yulp4gjy3aoqvwvvbcmvuk52xxxxxxxxxx \
   --start-time '2022-02-21 14:25' --end-time '2022-02-21 17:25'
-
+``` 
 Run Python script to pull OCI Audit record (Written for python 2.x)
-
+``` 
 python --configfile myconfig --starttime "2022-15-05T07:00:00" --endtime "2022-15-05T07:00:00" --outfile audit.json
+``` 
 The Configfile is a json file like this:
-  
+``` 
   {"tenantOCID":"ocid1.tenancy.oc1..aaaaaaaaflf2uxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  "userOCID":"ocid1.user.oc1..aaaaaaaaryi42cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  "fingerPrint":"21:2b:90:a8:ec:a2:10:61:d1:41:b1:3a:93:ac:93:9b",
  "privateKeyFile":"/home/ocitest/.oci/oci_api_key.pem",
  "iaasAPIUri":"https://iaas.eu-frankfurt-1.oraclecloud.com",
  "availabilityDomainPrefix":"wTjm%3AEU-FRANKFURT-1-AD-"}
-  
+```   
 
 ### Additional blogs on the topics around fusion and IDCS integration is found here.
   
