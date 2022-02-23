@@ -17,11 +17,11 @@ The lazy ones, just use the OCI Cloud shell, giving you a OCI CLI/SDK envrionmen
 
 ### Examples of commandlines
 Pull all IDCS Audit since 2022-21-02 15:25
-    sh getaudit 7550e9d8a28e41a5a5beb26fbfbfbfbfb 35b44b44-c76b-49d2-8b8b-e19c6e98c534 https://<your IDCS URL>.identity.oraclecloud.com '?filter=timestamp%20gt%20%222022-02-21T15:25:00.001Z%22%20'
+    sh getaudit 7550e9d8a28e41a5a5beb26fbfbfbfbfb 35b44b44-c76b-49d2-8b8b-e19c6e98c534 https://\<your IDCS URL\>.identity.oraclecloud.com '?filter=timestamp%20gt%20%222022-02-21T15:25:00.001Z%22%20'
   
 Generate JWT token for API usage (like postman)
-'''sh gettoken 7550e9d8a28e41a5a5beb26fbfbfbfbfb 35b44b44-c76b-49d2-8b8b-e19c6e98c534 https://<your IDCS URL>.identity.oraclecloud.com
-  
+```sh gettoken 7550e9d8a28e41a5a5beb26fbfbfbfbfb 35b44b44-c76b-49d2-8b8b-e19c6e98c534 https://<your IDCS URL>.identity.oraclecloud.com
+```  
 Use OCI CLI to fetch Audit records
 oci audit event list --compartment-id ocid1.tenancy.oc1..aaaaaaaaflf2uasr2shm5ag2yulp4gjy3aoqvwvvbcmvuk52xxxxxxxxxx \
   --start-time '2022-02-21 14:25' --end-time '2022-02-21 17:25'
