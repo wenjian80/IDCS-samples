@@ -6,6 +6,7 @@ is built on SCIM, same standard the REST APIs used fro Azure and Fusion provisio
 
 - SSO between Oracle IDCS and Oracle Fusion  (fusion13sso_v3.pdf)
 - SSO between Azure AD and IDCS (azureAD_federation_v4.pdf)
+- Multi AzureAD SSO, with the Azure AD invite guest feature [(Video on google drive)](https://drive.google.com/file/d/1c62ac56O5VFJJ93emfhhIqL0GFEzdvSJ/view?usp=sharing)
 - Provisioning from AzureAD to Oracle IDCS (azureAD_provisioning_v2.pdf)
 - Example of custom claims in AzureAD that mask off the Azure domain name, if the username in IDCS is without domain name (custom_claims_v1.pdf)
 - How to configure MFA within IDCS (MFA_Setup.pdf)
